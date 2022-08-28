@@ -1,0 +1,79 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <h1 style="color: aliceblue">Angular Crud</h1>
+    <div class="d-flex">
+      <button (click)="clickAddUser()" class="btn btn-success" type="button" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        Add Data
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <table class="table text-center table-hover table-striped ">
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">User ID</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Email ID</th>
+        <th scope="col">Phone No.</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of allUsers">
+        <td>{{row.id}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.email}}</td>
+        <td>{{row.phone}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" (click)="deleteById(row)">
+            <i class="bi bi-trash-fill"></i>
+          </button>
+          <button class="btn btn-outline-info mx-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            (click)="onEdit(row)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add User Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="mb-3">
+            <label for="exampleInputUserName" class="form-label">User Name</label>
+            <input type="text" formControlName="username" class="form-control" id="exampleInputUserName"
+              aria-describedby="UserNameHelp" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmailID" class="form-label">Email ID</label>
+            <input type="email" formControlName="email" class="form-control" id="exampleInputEmailID"
+              aria-describedby="UserEmailHelp" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPhone" class="form-label">Phone No.</label>
+            <input type="email" formControlName="phoneno" class="form-control" id="exampleInputPhone"
+              aria-describedby="UserPhoneHelp" />
+          </div>
+         
+          <div class="">
+            <button  type="submit" class="btn btn-danger" (click)="clear()">Clear</button>
+            <button *ngIf="showAdd" style="float: right;" type="submit" class="btn btn-primary" (click)="postUserDetails()">Submit</button>
+            <button *ngIf="showUpdate" style="float: right;" type="submit" class="btn btn-success" (click)="updateUserDetails()">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

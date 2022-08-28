@@ -1,0 +1,10 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "name": "Soumyadeep",
+      "email": "abc@123.com",
+      "phone": "1234"
+    }
+  ]
+}
